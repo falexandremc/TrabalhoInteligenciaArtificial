@@ -11,9 +11,10 @@ import org.graphstream.graph.implementations.SingleGraph;
  */
 public class Grafo {
     public Graph graph = new SingleGraph("Grafo");
+    //o atributo consiste em uma lista de adjacencia de vertices. cada vertice do tipo LindedList armazena uma sequencia de outros vertices do tipo Integer a qual esta conectado
     public LinkedList<Integer> arestas[];
+    //quantidade de vertices do grafo
     public int vertice;
-    public int in[];
     
     /**
      * @param v quantidade de vertices do grafo
@@ -21,10 +22,8 @@ public class Grafo {
     public Grafo(int v) {
         vertice = v;
         arestas = new LinkedList[v];
-        in = new int[v];
         for (int i = 0; i < vertice; i++){
             arestas[i] = new LinkedList();
-            in[i] = 0;
             graph.addNode(String.valueOf(i));
         }
     }
@@ -37,9 +36,7 @@ public class Grafo {
         arestas[u].add(v);
         arestas[v].add(u);
         try{
-            graph.addEdge( String.valueOf(u)+String.valueOf(v), String.valueOf(u), String.valueOf(v) );
-            
-        
+            graph.addEdge( String.valueOf(u)+String.valueOf(v), String.valueOf(u), String.valueOf(v) );  
         }catch(EdgeRejectedException|IdAlreadyInUseException e){}
         graph.getNode(graph.getNodeCount()-1).addAttribute("ui.label", graph.getNodeCount()-1);
         
@@ -60,7 +57,6 @@ public class Grafo {
     */
     public void addArestaD(int u,int v){
         arestas[u].add(v);
-        in[v]++;
     }
     /**
      * Método exclui uma aresta direcionada que pertence ao grafo
