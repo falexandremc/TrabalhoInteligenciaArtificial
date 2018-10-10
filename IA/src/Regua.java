@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  *
@@ -7,6 +8,10 @@ public class Regua {
     private Character regua[];
     //o atributo n constitui o tamanho da regua atraves da formula (2*n)+1
     private int n;
+    //Esse predecessor será utilizado para descobrirmos a partir de um estado qual o estado anterior e com isso o caminho
+    private Regua predecessor;
+    //Gente, estou achando que esta lista de sucessores será suficiente para sabermos o caminho do estado inicial até o final
+    private ArrayList<Regua> sucessores;
 
     public Regua(int n,String regua) {
         //setando n que constitui o tamanho da regua atraves da formula (2*n)+1
@@ -29,6 +34,9 @@ public class Regua {
      */
     public int getN() {
         return n;
+    }
+    public Character[] getRegua() {
+    	return regua;
     }
     /**
      * Insere um bloco A ou B ou # na regua
