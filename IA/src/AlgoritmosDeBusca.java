@@ -33,7 +33,7 @@ public class AlgoritmosDeBusca {
         regua.visitado = true;
         //percorre os sucessores de cada estado visitado até não haver mais estados a visitar.
         while (!listaDeEstados.isEmpty()) {
-            //removendo uma regua da lista de estados a visitar para verificar se este é meta
+            //removendo uma regua da lista de estados para verificar se este é meta
             Regua element = listaDeEstados.remove();
             System.out.print(Arrays.toString(element.getRegua()));
             //se o estado for meta retorna o estado
