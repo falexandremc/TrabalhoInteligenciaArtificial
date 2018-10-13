@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.Queue;
  */
 public class AlgoritmosDeBusca {
 	
-	
+	// conjunto de estados
+	private HashSet<Regua> h = new HashSet<Regua>(); 
 	// estados da busca
 	private ArrayList<Regua> estados;
 
@@ -53,4 +55,5 @@ public class AlgoritmosDeBusca {
         }
         return null;
     }
+    
 }
