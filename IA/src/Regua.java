@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -109,9 +110,7 @@ public class Regua {
 	}
     
 	public String toString() {
-        return "Regua{" +
-                "regua='" + regua.toString() + '\'' +
-                '}';
+        return Arrays.toString(regua);
     }
 	@Override
 	public int hashCode() {

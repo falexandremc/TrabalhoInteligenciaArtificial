@@ -31,7 +31,6 @@ public class AlgoritmosDeBusca {
         while (!listaDeEstados.isEmpty()) {
             //removendo uma regua da lista de estados para verificar se este é meta
             Regua element = listaDeEstados.remove(0);
-            System.out.print(Arrays.toString(element.getRegua()));
             //se o estado for meta retorna o estado
             if(element.equals(estadoMeta))
                 return element;
