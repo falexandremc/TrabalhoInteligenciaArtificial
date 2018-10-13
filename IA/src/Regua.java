@@ -13,6 +13,8 @@ public class Regua {
     //indice do #
     private int indice;
     
+    boolean visitado;
+    
     public Regua(int n,Character regua[]) {
     	this.n=n;
     	this.regua=regua;
