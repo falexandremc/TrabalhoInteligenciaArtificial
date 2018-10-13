@@ -25,22 +25,22 @@ public class AlgoritmosDeBusca {
      * @return o caminho do estado inicial até o estado meta ou NULL caso não exista uma solução
      */
     public Regua BreadthFirstSearch(Regua regua, Regua estadoMeta) {
-        //lista de estados
+    	h= new HashSet<>();
+    	//lista de estados
        listaDeEstados = new ArrayList<Regua>();
         //adicionando o estado inicial
         listaDeEstados.add(regua);
-        //marcando o estado inicial como visitado
-        regua.visitado = true;
-        //percorre os sucessores de cada estado até não haver mais estados a visitar.
+        h.add(regua);
+        //percorre os sucessores de cada estado visitado até não haver mais estados a visitar.
         while (!listaDeEstados.isEmpty()) {
             //removendo uma regua da lista de estados para verificar se este é meta
-            Regua elemento = listaDeEstados.remove();
-            System.out.print(Arrays.toString(elemento.getRegua()));
+            Regua element = listaDeEstados.remove(0);
+            System.out.print(Arrays.toString(element.getRegua()));
             //se o estado for meta retorna o estado
-            if(elemento.equals(estadoMeta))
-                return elemento;
+            if(element.equals(estadoMeta))
+                return element;
             //buscando os sucessores do elemento
-            List<Regua> vizinhos = elemento.sucessores();
+            List<Regua> vizinhos = element.sucessores();
             //para cada sucessor
             for (int i = 0; i < vizinhos.size(); i++) {
                 Regua r = vizinhos.get(i);
@@ -55,32 +55,17 @@ public class AlgoritmosDeBusca {
         }
         return null;
     }
-    /**
-     * Algoritmo de busca em profundidade recursiva
-     * @param regua Regua do estado inicial
-     * @param estadoMeta Regua do estado méta. o algoritmo para quando esse estado é alcançado
-     * @return o caminho do estado inicial até o estado meta ou NULL caso não exista uma solução
-     */
-    private Regua DepthFirstSearch(Regua regua, Regua estadoMeta) {
-        //CASO BASE -- se o estado for meta retorna o estado
-        if(regua.equals(estadoMeta))
-            return regua;
-        //lista de estados
-        Queue<Regua> listaDeEstados = new LinkedList<>();
-        //adicionando o estado inicial
-        listaDeEstados.add(regua);
-        //marcando o estado inicial como visitado
-        regua.visitado = true;
-        //buscando os sucessores da regua
-        Iterator<Regua> reguas = listaDeEstados.remove().sucessores().iterator();
-        //enquanto o estado possuir sucessores
-        while (reguas.hasNext()) {
-            Regua r = reguas.next();
-            //visita o proximo estado sucessor se este ainda não foi visitado
-            if (!r.visitado)
-                DepthFirstSearch(r, estadoMeta);
-        }
-        return null;
+    
+    public Regua buscaProfundidade(Regua regua, Regua estadoMeta) {
+    	//lista de estados
+        listaDeEstados = new ArrayList<Regua>();
+         //adicionando o estado inicial
+         listaDeEstados.add(regua);
+         
+         
+         while(!listaDeEstados.isEmpty()) {
+        	 
+         }
     }
-
+    
 }
