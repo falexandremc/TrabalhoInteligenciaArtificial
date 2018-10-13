@@ -8,19 +8,27 @@ public class Regua {
     private Character regua[];
     //o atributo n constitui o tamanho da regua atraves da formula (2*n)+1
     private int n;
-    //Esse predecessor será utilizado para descobrirmos a partir de um estado qual o estado anterior e com isso o caminho
+    //Esse predecessor serï¿½ utilizado para descobrirmos a partir de um estado qual o estado anterior e com isso o caminho
     private Regua predecessor;
-    //Gente, estou achando que esta lista de sucessores será suficiente para sabermos o caminho do estado inicial até o final
-    private ArrayList<Regua> sucessores;
-
+    //indice do #
+    private int indice;
+    
+    public Regua(int n,Character regua[]) {
+    	this.n=n;
+    	this.regua=regua;
+    }
+    
     public Regua(int n,String regua) {
         //setando n que constitui o tamanho da regua atraves da formula (2*n)+1
         this.n = n;        
         //iniciando a regua com um vetor de (2*n)+1 posiÃ§Ãµes
         this.regua = new Character[(2*n)+1];
         //repassando os valores de entrada para a regua
-        for (int i = 0; i < regua.length(); i++)
+        for (int i = 0; i < regua.length(); i++) {
             this.regua[i]=regua.charAt(i);
+        	if(this.regua[i]=='#')
+        			this.indice=i;
+        }
         
     }
     /**
@@ -64,6 +72,40 @@ public class Regua {
             throw new IllegalArgumentException(erro+" pois os indices estao fora da regua");
         }
     }
-    
+    @Override
+    public boolean equals(Object obj) {
+    	if (obj instanceof Regua) {
+    		for(int i=0; i<this.n;i++) {
+    			if(this.regua[i]!= ((Regua)obj).getRegua()[i]) {
+    				return false;
+    			}
+    		}
+    		return true;
+    	}
+    	return false;
+    }
+    // gera sucessores 
+    public ArrayList<Regua> sucessores(){
+    	ArrayList<Regua> su= new ArrayList<Regua>();
+    	for (int i=indice-1;i>=0;i--) {
+    		Regua r = new Regua(n,regua);
+    		r.setPredecessor(this);
+    		r.troca(i,indice);
+    		su.add(r);
+    	}
+    	for(int i=indice+1;i<=n;i++) {
+    		Regua r = new Regua(n,regua);
+    		r.setPredecessor(this);
+    		r.troca(i,indice);
+    		su.add(r);
+    	}
+    	return su;
+    }
+	public Regua getPredecessor() {
+		return predecessor;
+	}
+	public void setPredecessor(Regua predecessor) {
+		this.predecessor = predecessor;
+	}
     
 }
