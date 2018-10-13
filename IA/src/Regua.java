@@ -108,4 +108,13 @@ public class Regua {
 		this.predecessor = predecessor;
 	}
     
+	public String toString() {
+        return "Regua{" +
+                "regua='" + regua.toString() + '\'' +
+                '}';
+    }
+	@Override
+	public int hashCode() {
+		return this.toString().hashCode();
+	}
 }
