@@ -16,7 +16,7 @@ public class AlgoritmosDeBusca {
 	// conjunto de estados
 	private HashSet<Regua> h = new HashSet<Regua>(); 
 	// estados da busca
-	private ArrayList<Regua> estados;
+	private ArrayList<Regua> listaDeEstados;
 
     /**
      * Algoritmo de busca em largura
@@ -26,7 +26,7 @@ public class AlgoritmosDeBusca {
      */
     public Regua BreadthFirstSearch(Regua regua, Regua estadoMeta) {
         //lista de estados
-        Queue<Regua> listaDeEstados = new LinkedList<>();
+       listaDeEstados = new ArrayList<Regua>();
         //adicionando o estado inicial
         listaDeEstados.add(regua);
         //marcando o estado inicial como visitado
