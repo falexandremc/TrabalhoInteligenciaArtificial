@@ -20,10 +20,4 @@ public class ReguaPuzzle {
             reguaDoEstadoMeta.setI(reguaDeEntrada1.getN() - i, 'B');
         }
     }
-    
-    private boolean TesteDeMeta(Regua reguaAtual) {
-    	if(reguaAtual.getRegua().toString()==reguaDoEstadoMeta.getRegua().toString())
-    		return true;
-    	return false;
-    }
 }
