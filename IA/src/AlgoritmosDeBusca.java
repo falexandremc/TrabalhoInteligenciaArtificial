@@ -45,7 +45,7 @@ public class AlgoritmosDeBusca {
             for (int i = 0; i < vizinhos.size(); i++) {
                 Regua r = vizinhos.get(i);
                 //se o estado não esta nulo e nem foi visitado
-                if (r != null && !r.visitado) {
+                if (r != null && !h.contains(r)) {
                     //adiciona o estado na lista de estados
                     listaDeEstados.add(r);
                     //e seta o estado como visitado
