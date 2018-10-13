@@ -59,24 +59,25 @@ public class Regua {
      * Troca dois blocos distintos A ou B ou # na regua se estes não estao a mais de n blocos de distancia
      * @param i indice da regua na qual será inserido o bloco j
      * @param j indice da regua na qual será inserido o bloco i
+     * @return true se a troca foi bem sucedida e false caso contrario.
      */
-    public void troca(int i,int j){
-        String erro = "A troca dos blocos nos indices "+i+" e "+j+" Viola as regras de troca";
+    public boolean troca(int i,int j){
         //verificando se as regras de troca estão sendo obedecidas.
         if(!(Math.abs(i-j)<=n&&i!=j))
-            throw new IllegalArgumentException(erro);
+            return false;
         try {
             Character aux = regua[i];
             regua[i]=regua[j];
             regua[j]=aux;
         } catch (IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException(erro+" pois os indices estao fora da regua");
+            return false;
         }
+        return true;
     }
     @Override
     public boolean equals(Object obj) {
     	if (obj instanceof Regua) {
-    		for(int i=0; i<this.n;i++) {
+    		for(int i=0; i<this.getSize();i++) {
     			if(this.regua[i]!= ((Regua)obj).getRegua()[i]) {
     				return false;
     			}
@@ -89,16 +90,16 @@ public class Regua {
     public ArrayList<Regua> sucessores(){
     	ArrayList<Regua> su= new ArrayList<Regua>();
     	for (int i=indice-1;i>=0;i--) {
-    		Regua r = new Regua(n,regua);
+    		Regua r = new Regua(n,Arrays.copyOf(regua,regua.length));
     		r.setPredecessor(this);
-    		r.troca(i,indice);
-    		su.add(r);
+    		if(r.troca(i,indice))
+                    su.add(r);
     	}
-    	for(int i=indice+1;i<=n;i++) {
-    		Regua r = new Regua(n,regua);
+    	for(int i=indice+1;i<=getSize();i++) {
+    		Regua r = new Regua(n,Arrays.copyOf(regua,regua.length));
     		r.setPredecessor(this);
-    		r.troca(i,indice);
-    		su.add(r);
+    		if(r.troca(i,indice));
+                    su.add(r);
     	}
     	return su;
     }

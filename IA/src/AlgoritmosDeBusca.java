@@ -58,7 +58,7 @@ public class AlgoritmosDeBusca {
      * @param listaDeEstados lista de estados
      * @return o caminho do estado inicial até o estado meta ou NULL caso não exista uma solução
      */
-    private Regua DepthFirstSearch(Regua regua, Regua estadoMeta, HashSet<Regua> estadosVisitados,ArrayList<Regua> listaDeEstados) {
+    public Regua DepthFirstSearch(Regua regua, Regua estadoMeta, HashSet<Regua> estadosVisitados,ArrayList<Regua> listaDeEstados) {
         //CASO BASE -- se o estado for meta retorna o estado
         if(regua.equals(estadoMeta))
             return regua;
