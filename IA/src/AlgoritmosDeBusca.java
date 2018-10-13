@@ -44,6 +44,7 @@ public class AlgoritmosDeBusca {
                 if (r != null && !estadosVisitados.contains(r)) {
                     //adiciona o estado na lista de estados
                     listaDeEstados.add(r);
+                    estadosVisitados.add(r);
                 }
             }
         }
@@ -64,8 +65,6 @@ public class AlgoritmosDeBusca {
             return regua;
         //adicionando o estado inicial
         listaDeEstados.add(regua);
-        //marcando o estado inicial como visitado
-        regua.visitado = true;
         //buscando os sucessores da regua
         Iterator<Regua> reguas = listaDeEstados.remove(0).sucessores().iterator();
         //enquanto o estado possuir sucessores
