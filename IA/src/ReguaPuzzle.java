@@ -7,6 +7,7 @@ import java.util.HashSet;
  * @author Alexandre
  */
 public class ReguaPuzzle {
+
     Regua reguaDoEstadoMeta;
     Regua reguaDeEntrada;
 
@@ -22,9 +23,10 @@ public class ReguaPuzzle {
         //preenche do inicio ate o meio da regua com 'A' e do final ate o meio com 'B'
         for (int i = 0; i < reguaDeEntrada.getN(); i++) {
             reguaDoEstadoMeta.setI(i, 'A');
-            reguaDoEstadoMeta.setI((reguaDeEntrada.getSize()-1) - i, 'B');
+            reguaDoEstadoMeta.setI((reguaDeEntrada.getSize() - 1) - i, 'B');
         }
     }
+
     public static void main(String[] args) {
         args = new String[2];
         args[0] = "4";
