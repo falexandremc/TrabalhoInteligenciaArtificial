@@ -6,7 +6,7 @@ import java.util.Arrays;
  *
  * @author Alexandre
  */
-public class Regua {
+public class Regua implements Comparable<Regua> {
 
     private Character regua[];
     //o atributo n constitui o tamanho da regua atraves da formula (2*n)+1
@@ -15,6 +15,9 @@ public class Regua {
     private Regua predecessor;
     //indice do #
     private int indice;
+    
+    private int g;
+    private int h;
 
     public Regua(int n, Character regua[]) {
         this.n = n;
@@ -102,14 +105,17 @@ public class Regua {
             Regua r = new Regua(n, Arrays.copyOf(regua, regua.length));
             r.setPredecessor(this);
             if (r.troca(i, indice)) {
-                su.add(r);
+            	r.g= this.g + Math.abs(i - indice);
+            	su.add(r);
             }
         }
         for (int i = indice + 1; i <= getSize(); i++) {
             Regua r = new Regua(n, Arrays.copyOf(regua, regua.length));
             r.setPredecessor(this);
-            if (r.troca(i, indice));
-            su.add(r);
+            if (r.troca(i, indice)) {
+            	r.g= this.g + Math.abs(i - indice);
+            	su.add(r);
+            }
         }
         return su;
     }
@@ -130,4 +136,20 @@ public class Regua {
     public int hashCode() {
         return this.toString().hashCode();
     }
+
+	@Override
+	public int compareTo(Regua o) {
+		if(this.g + this.h> o.g + o.h) 
+			return 1;
+		else if( this.g+ this.h < o.g+ o.h)
+			return -1;
+		else
+			return 0;
+	}
+    
+	// a fzaer...
+	public void calc_H() {
+		
+	}
+   
 }
