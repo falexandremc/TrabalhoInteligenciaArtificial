@@ -1,88 +1,125 @@
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
  *
  * @author Alexandre
  */
 public class AlgoritmosDeBusca {
-	
-	// conjunto de estados
-	private HashSet<Regua> h = new HashSet<Regua>(); 
-	// estados da busca
-	private ArrayList<Regua> listaDeEstados;
 
     /**
      * Algoritmo de busca em largura
+     *
      * @param regua Regua do estado inicial
-     * @param estadoMeta Regua do estado méta. o algoritmo para quando esse estado é alcançado
-     * @return o caminho do estado inicial até o estado meta ou NULL caso não exista uma solução
+     * @param estadoMeta Regua do estado méta. o algoritmo para quando esse
+     * estado é alcançado
+     * @return o caminho do estado inicial até o estado meta ou NULL caso não
+     * exista uma solução
      */
     public Regua BreadthFirstSearch(Regua regua, Regua estadoMeta) {
-    	h= new HashSet<>();
-    	//lista de estados
-       listaDeEstados = new ArrayList<Regua>();
+        //conjunto de estados já visitados. é usado para não verificar um mesmo estado mais de uma vez
+        HashSet<Regua> estadosVisitados = new HashSet<>();
+        //lista de estados
+        ArrayList<Regua> listaDeEstados = new ArrayList<>();
         //adicionando o estado inicial
         listaDeEstados.add(regua);
-        h.add(regua);
+        estadosVisitados.add(regua);
         //percorre os sucessores de cada estado visitado até não haver mais estados a visitar.
         while (!listaDeEstados.isEmpty()) {
             //removendo uma regua da lista de estados para verificar se este é meta
             Regua element = listaDeEstados.remove(0);
-            System.out.print(Arrays.toString(element.getRegua()));
             //se o estado for meta retorna o estado
-            if(element.equals(estadoMeta))
+            if (element.equals(estadoMeta)) {
                 return element;
+            }
             //buscando os sucessores do elemento
             List<Regua> vizinhos = element.sucessores();
             //para cada sucessor
             for (int i = 0; i < vizinhos.size(); i++) {
                 Regua r = vizinhos.get(i);
                 //se o estado não esta nulo e nem foi visitado
-                if (r != null && !h.contains(r)) {
+                if (r != null && !estadosVisitados.contains(r)) {
                     //adiciona o estado na lista de estados
                     listaDeEstados.add(r);
                     h.add(r);
+                    estadosVisitados.add(r);
                 }
             }
         }
         return null;
     }
-    
+
     /**
      * Algoritmo de busca em profundidade recursiva
+     *
      * @param regua Regua do estado inicial
-     * @param estadoMeta Regua do estado méta. o algoritmo para quando esse estado é alcançado
-     * @return o caminho do estado inicial até o estado meta ou NULL caso não exista uma solução
+     * @param estadoMeta Regua do estado méta. o algoritmo para quando esse
+     * estado é alcançado
+     * @param estadosVisitados conjunto de estados já visitados. é usado para
+     * não verificar um mesmo estado mais de uma vez
+     * @param listaDeEstados lista de estados
+     * @return o caminho do estado inicial até o estado meta ou NULL caso não
+     * exista uma solução
      */
-    private Regua DepthFirstSearch(Regua regua, Regua estadoMeta) {
+    public Regua DepthFirstSearch(Regua regua, Regua estadoMeta, HashSet<Regua> estadosVisitados, ArrayList<Regua> listaDeEstados) {
         //CASO BASE -- se o estado for meta retorna o estado
-        if(regua.equals(estadoMeta))
+        if (regua.equals(estadoMeta)) {
             return regua;
-        //lista de estados
-        Queue<Regua> listaDeEstados = new LinkedList<>();
+        }
         //adicionando o estado inicial
         listaDeEstados.add(regua);
-        //marcando o estado inicial como visitado
-        regua.visitado = true;
         //buscando os sucessores da regua
-        Iterator<Regua> reguas = listaDeEstados.remove().sucessores().iterator();
+        Iterator<Regua> reguas = listaDeEstados.remove(0).sucessores().iterator();
         //enquanto o estado possuir sucessores
         while (reguas.hasNext()) {
             Regua r = reguas.next();
-            //visita o proximo estado sucessor se este ainda não foi visitado
-            if (!r.visitado)
-                DepthFirstSearch(r, estadoMeta);
+            //visita o proximo estado sucessor se este ja não foi visitado
+            if (r != null && !estadosVisitados.contains(r)) {
+                estadosVisitados.add(r);
+                DepthFirstSearch(r, estadoMeta, estadosVisitados, listaDeEstados);
+            }
         }
         return null;
     }
-    
-    
-    
+
+    /**
+     * Algoritmo de busca em profundidade recursiva
+     *
+     * @param regua Regua do estado inicial
+     * @param estadoMeta Regua do estado méta. o algoritmo para quando esse
+     * estado é alcançado
+     * @param estadosVisitados conjunto de estados já visitados. é usado para
+     * não verificar um mesmo estado mais de uma vez
+     * @param listaDeEstados lista de estados
+     * @return o caminho do estado inicial até o estado meta ou NULL caso não
+     * exista uma solução
+     */
+    public Regua DepthFirstSearchIteractive(Regua regua, Regua estadoMeta, HashSet<Regua> estadosVisitados, ArrayList<Regua> listaDeEstados, int profundidade) {
+        //CASO BASE -- se o estado for meta retorna o estado
+        if (regua.equals(estadoMeta)) {
+            return regua;
+        }
+        int profundidadeAtual=1;
+        //adicionando o estado inicial
+        listaDeEstados.add(regua);
+        //buscando os sucessores da regua
+        Iterator<Regua> reguas = listaDeEstados.remove(0).sucessores().iterator();
+        //enquanto o estado possuir sucessores
+        while (reguas.hasNext() && profundidadeAtual<=profundidade) {
+            Regua r = reguas.next();
+            //visita o proximo estado sucessor se este ja não foi visitado
+            if (r != null && !estadosVisitados.contains(r)) {
+                estadosVisitados.add(r);
+            }
+            if(estadosVisitados.contains(r)){
+                
+            }
+            profundidadeAtual=profundidadeAtual+1;
+        }
+        return null;
+    }
+
 }
