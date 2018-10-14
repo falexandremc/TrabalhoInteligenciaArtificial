@@ -48,6 +48,7 @@ public class AlgoritmosDeBusca {
                 if (r != null && !h.contains(r)) {
                     //adiciona o estado na lista de estados
                     listaDeEstados.add(r);
+                    h.add(r);
                 }
             }
         }
@@ -81,5 +82,7 @@ public class AlgoritmosDeBusca {
         }
         return null;
     }
+    
+    
     
 }
