@@ -44,7 +44,7 @@ public class AlgoritmosDeBusca {
                 if (r != null && !estadosVisitados.contains(r)) {
                     //adiciona o estado na lista de estados
                     listaDeEstados.add(r);
-                    h.add(r);
+                    estadosVisitados.add(r);
                     estadosVisitados.add(r);
                 }
             }
