@@ -32,7 +32,9 @@ public class ReguaPuzzle {
         args[0] = "4";
         args[1] = "BBAB#BAAA";
         ReguaPuzzle Game = new ReguaPuzzle(new Regua(Integer.parseInt(args[0]), args[1]));
-        System.out.println(new AlgoritmosDeBusca().BreadthFirstSearch(Game.reguaDeEntrada, Game.reguaDoEstadoMeta).toString());
-        System.out.println(new AlgoritmosDeBusca().DepthFirstSearch(Game.reguaDeEntrada, Game.reguaDoEstadoMeta, new HashSet<Regua>(), new ArrayList<>()).toString());
+        //System.out.println(new AlgoritmosDeBusca().BreadthFirstSearch(Game.reguaDeEntrada, Game.reguaDoEstadoMeta).toString());
+        //System.out.println(new AlgoritmosDeBusca().DepthFirstSearch(Game.reguaDeEntrada, Game.reguaDoEstadoMeta, new HashSet<Regua>(), new ArrayList<>()).toString());
+        System.out.println(new AlgoritmosDeBusca().idaStar(Game.reguaDeEntrada, Game.reguaDoEstadoMeta).toString());
+        
     }
 }

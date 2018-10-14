@@ -149,7 +149,31 @@ public class Regua implements Comparable<Regua> {
     
 	// a fzaer...
 	public void calc_H() {
-		
+		h=0;
+		for(int i=0;i<this.n;i++) {
+			if(this.regua[i] == 'A') {
+				h++;
+			}
+		}
+		if(this.regua[n]=='#')
+			h++;
+	
+	}
+
+	public int getG() {
+		return g;
+	}
+
+	public void setG(int g) {
+		this.g = g;
+	}
+
+	public int getH() {
+		return h;
+	}
+
+	public void setH(int h) {
+		this.h = h;
 	}
    
 }

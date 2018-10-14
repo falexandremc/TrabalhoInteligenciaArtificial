@@ -158,6 +158,7 @@ public class AlgoritmosDeBusca {
         //lista de estados
         PriorityQueue<Regua> estados = new PriorityQueue<Regua>();
         //adicionando o estado inicial
+        regua.calc_H();
         estados.add(regua);
         estadosVisitados.add(regua);
         
@@ -173,14 +174,56 @@ public class AlgoritmosDeBusca {
                 Regua aux = vizinhos.get(i);
                 //se o estado não esta nulo e nem foi visitado
                 if (aux != null && !estadosVisitados.contains(r)) {
-                    //adiciona o estado na lista de estados
+                    // calcula h(n)
                 	aux.calc_H();
-                    estados.add(r);
+                	//adiciona o estado na lista de estados
+                	estados.add(r);
                     estadosVisitados.add(r);
                 }
             }
         }
 		return null;
     }
-
+    public Regua idaStar(Regua regua, Regua estadoMeta) {
+    	//conjunto de estados já visitados. é usado para não verificar um mesmo estado mais de uma vez
+        HashSet<Regua> estadosVisitados = new HashSet<Regua>();
+        //lista de estados
+        PriorityQueue<Regua> estados = new PriorityQueue<Regua>();
+        //adicionando o estado inicial
+        regua.calc_H();
+        estados.add(regua);
+        estadosVisitados.add(regua);
+        int l=regua.getG()+ regua.getH();
+        while(!estados.isEmpty()) {
+        	Regua r= estados.poll();
+        	//verificar ate limite
+        	while(r.getG()+r.getH()<=l) {
+        		if (regua.equals(estadoMeta)) {
+                    return regua;
+                }
+            	//buscando os sucessores do elemento
+                List<Regua> vizinhos = r.sucessores();
+                //para cada sucessor
+                for (int i = 0; i < vizinhos.size(); i++) {
+                    Regua aux = vizinhos.get(i);
+                    //se o estado não esta nulo e nem foi visitado
+                    if (aux != null && !estadosVisitados.contains(r)) {
+                        // calcula h(n)
+                    	aux.calc_H();
+                    	//adiciona o estado na lista de estados
+                    	estados.add(r);
+                        estadosVisitados.add(r);
+                    }
+                }
+                r=estados.poll();
+        	}
+        	//atualiza limite
+        	if(r.getG()+r.getH()>l) {
+        		l=r.getG()+r.getH();
+        		estados.add(r);
+        	}
+        	
+        }
+		return null;
+    }
 }
