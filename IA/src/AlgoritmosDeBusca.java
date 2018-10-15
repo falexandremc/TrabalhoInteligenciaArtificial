@@ -34,6 +34,7 @@ public class AlgoritmosDeBusca {
             Regua element = listaDeEstados.remove(0);
             //se o estado for meta retorna o estado
             if (element.equals(estadoMeta)) {
+            	System.out.println("Quantidade de nos "+ estadosVisitados.size());
                 return element;
             }
             //buscando os sucessores do elemento
@@ -44,6 +45,7 @@ public class AlgoritmosDeBusca {
                 //se o estado não esta nulo e nem foi visitado
                 if (r != null && !estadosVisitados.contains(r)) {
                     //adiciona o estado na lista de estados
+                    r.setPredecessor(element);
                     listaDeEstados.add(r);
                     estadosVisitados.add(r);
                 }

@@ -22,6 +22,11 @@ public class Regua implements Comparable<Regua> {
     public Regua(int n, Character regua[]) {
         this.n = n;
         this.regua = regua;
+        for (int i = 0; i < regua.length; i++) {
+            if (this.regua[i] == '#') {
+                this.indice = i;
+            }
+        }
     }
 
     public Regua(int n, String regua) {
@@ -32,6 +37,7 @@ public class Regua implements Comparable<Regua> {
         //repassando os valores de entrada para a regua
         for (int i = 0; i < regua.length(); i++) {
             this.regua[i] = regua.charAt(i);
+            //System.out.print(this.regua[i]);
             if (this.regua[i] == '#') {
                 this.indice = i;
             }
@@ -81,6 +87,11 @@ public class Regua implements Comparable<Regua> {
             return false;
         }
         try {
+        	if(regua[i]=='#') {
+        		indice=j;
+        	}else {
+        		indice=i;
+        	}
             Character aux = regua[i];
             regua[i] = regua[j];
             regua[j] = aux;
@@ -103,15 +114,15 @@ public class Regua implements Comparable<Regua> {
         ArrayList<Regua> su = new ArrayList<Regua>();
         for (int i = indice - 1; i >= 0; i--) {
             Regua r = new Regua(n, Arrays.copyOf(regua, regua.length));
-            r.setPredecessor(this);
+            //r.setPredecessor(this);
             if (r.troca(i, indice)) {
             	r.g= this.g + Math.abs(i - indice);
             	su.add(r);
             }
         }
-        for (int i = indice + 1; i <= getSize(); i++) {
+        for (int i = indice + 1; i < getSize(); i++) {
             Regua r = new Regua(n, Arrays.copyOf(regua, regua.length));
-            r.setPredecessor(this);
+            //r.setPredecessor(this);
             if (r.troca(i, indice)) {
             	r.g= this.g + Math.abs(i - indice);
             	su.add(r);
@@ -125,7 +136,7 @@ public class Regua implements Comparable<Regua> {
     }
 
     public void setPredecessor(Regua predecessor) {
-        this.predecessor = predecessor;
+    	this.predecessor = predecessor;
     }
 
     public String toString() {
@@ -147,7 +158,6 @@ public class Regua implements Comparable<Regua> {
 			return 0;
 	}
     
-	// a fzaer...
 	public void calc_H() {
 		h=0;
 		for(int i=0;i<this.n;i++) {
