@@ -161,12 +161,10 @@ public class Regua implements Comparable<Regua> {
 	public void calc_H() {
 		h=0;
 		for(int i=0;i<this.n;i++) {
-			if(this.regua[i] == 'A') {
+			if(this.regua[i] != 'A') {
 				h++;
 			}
 		}
-		if(this.regua[n]=='#')
-			h++;
 	
 	}
 

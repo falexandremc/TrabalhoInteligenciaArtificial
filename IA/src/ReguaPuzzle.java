@@ -37,13 +37,36 @@ public class ReguaPuzzle {
         Regua entrada=Game.reguaDeEntrada;
         Regua meta=Game.reguaDoEstadoMeta;
         AlgoritmosDeBusca busca= new AlgoritmosDeBusca();
+       System.out.println("--------- BreadthFirstSearch ---------");
         Regua r= busca.BreadthFirstSearch(entrada, meta);
         while(r!= null) {
         	System.out.println(r);
         	r= r.getPredecessor();
         } 
-        
-        //System.out.println(new AlgoritmosDeBusca().DepthFirstSearch(Game.reguaDeEntrada, Game.reguaDoEstadoMeta, new HashSet<Regua>(), new ArrayList<>()).toString());
+        r=busca.DepthFirstSearch(entrada, meta, new HashSet<Regua>(), new ArrayList<>());
+        System.out.println(r);
+        while(r!= null) {
+        	System.out.println(r);
+        	r= r.getPredecessor();
+        } 
+        System.out.println("--------- BestFirstSearch ---------");
+        r=busca.BestFirstSearch(entrada, meta);
+        while(r!= null) {
+        	System.out.println(r);
+        	r= r.getPredecessor();
+        }
+        System.out.println("-------- A* -------------");
+        r=busca.aStar(entrada, meta);
+        while(r!= null) {
+        	System.out.println(r);
+        	r= r.getPredecessor();
+        } 
+        System.out.println("-------- IDA* -------------");
+        r=busca.idaStar(entrada, meta);
+        while(r!= null) {
+        	System.out.println(r);
+        	r= r.getPredecessor();
+        } 
         //System.out.println(new AlgoritmosDeBusca().idaStar(Game.reguaDeEntrada, Game.reguaDoEstadoMeta).toString());
         
     }

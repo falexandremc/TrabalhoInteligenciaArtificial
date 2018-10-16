@@ -80,6 +80,7 @@ public class AlgoritmosDeBusca {
         //buscando os sucessores da regua
         Iterator<Regua> reguas = listaDeEstados.remove(0).sucessores().iterator();
         //enquanto o estado possuir sucessores
+       
         while (reguas.hasNext()) {
             Regua r = reguas.next();
             //visita o proximo estado sucessor se este ja não foi visitado
@@ -136,22 +137,24 @@ public class AlgoritmosDeBusca {
         //adicionando o estado inicial
         estados.add(regua);
         estadosVisitados.add(regua);
-        
         while(!estados.isEmpty()) {
         	Regua r= estados.poll();
-        	if (regua.equals(estadoMeta)) {
-                return regua;
+        	if (r.equals(estadoMeta)) {
+        		System.out.println("Quantidade de nos "+ estadosVisitados.size());
+                return r;
             }
         	//buscando os sucessores do elemento
             List<Regua> vizinhos = r.sucessores();
+            
             //para cada sucessor
             for (int i = 0; i < vizinhos.size(); i++) {
                 Regua aux = vizinhos.get(i);
                 //se o estado não esta nulo e nem foi visitado
-                if (aux != null && !estadosVisitados.contains(r)) {
+                if (aux != null && !estadosVisitados.contains(aux)) {
                     //adiciona o estado na lista de estados
-                    estados.add(r);
-                    estadosVisitados.add(r);
+                	aux.setPredecessor(r);
+                    estados.add(aux);
+                    estadosVisitados.add(aux);
                 }
             }
         }
@@ -170,21 +173,23 @@ public class AlgoritmosDeBusca {
         
         while(!estados.isEmpty()) {
         	Regua r= estados.poll();
-        	if (regua.equals(estadoMeta)) {
-                return regua;
+        	if (r.equals(estadoMeta)) {
+        		System.out.println("Quantidade de nos "+ estadosVisitados.size());
+        		return r;
             }
         	//buscando os sucessores do elemento
-            List<Regua> vizinhos = r.sucessores();
+            ArrayList<Regua> vizinhos = r.sucessores();
             //para cada sucessor
             for (int i = 0; i < vizinhos.size(); i++) {
                 Regua aux = vizinhos.get(i);
                 //se o estado não esta nulo e nem foi visitado
-                if (aux != null && !estadosVisitados.contains(r)) {
+                if (aux != null && !estadosVisitados.contains(aux)) {
                     // calcula h(n)
                 	aux.calc_H();
                 	//adiciona o estado na lista de estados
-                	estados.add(r);
-                    estadosVisitados.add(r);
+                	aux.setPredecessor(r);
+                	estados.add(aux);
+                    estadosVisitados.add(aux);
                 }
             }
         }
@@ -204,21 +209,23 @@ public class AlgoritmosDeBusca {
         	Regua r= estados.poll();
         	//verificar ate limite
         	while(r.getG()+r.getH()<=l) {
-        		if (regua.equals(estadoMeta)) {
-                    return regua;
+        		if (r.equals(estadoMeta)) {
+        			System.out.println("Quantidade de nos "+ estadosVisitados.size());
+        			return r;
                 }
             	//buscando os sucessores do elemento
-                List<Regua> vizinhos = r.sucessores();
+                ArrayList<Regua> vizinhos = r.sucessores();
                 //para cada sucessor
                 for (int i = 0; i < vizinhos.size(); i++) {
                     Regua aux = vizinhos.get(i);
                     //se o estado não esta nulo e nem foi visitado
-                    if (aux != null && !estadosVisitados.contains(r)) {
+                    if (aux != null && !estadosVisitados.contains(aux)) {
                         // calcula h(n)
                     	aux.calc_H();
                     	//adiciona o estado na lista de estados
-                    	estados.add(r);
-                        estadosVisitados.add(r);
+                    	aux.setPredecessor(r);
+                    	estados.add(aux);
+                        estadosVisitados.add(aux);
                     }
                 }
                 r=estados.poll();
