@@ -22,10 +22,10 @@ public class ReguaPuzzle {
         reguaDoEstadoMeta = new Regua(reguaDeEntrada.getN(), Arrays.copyOf(reguaDeEntrada.getRegua(),reguaDeEntrada.getSize()));
         //adiciona espaco vazio ao meio da regua
         reguaDoEstadoMeta.setI(reguaDeEntrada.getN(), '#');
-        //preenche do inicio ate o meio da regua com 'A' e do final ate o meio com 'B'
+        //preenche do inicio ate o meio da regua com 'B' e do final ate o meio com 'A'
         for (int i = 0; i < reguaDeEntrada.getN(); i++) {
-            reguaDoEstadoMeta.setI(i, 'A');
-            reguaDoEstadoMeta.setI((reguaDeEntrada.getSize() - 1) - i, 'B');
+            reguaDoEstadoMeta.setI(i, 'B');
+            reguaDoEstadoMeta.setI((reguaDeEntrada.getSize() - 1) - i, 'A');
         }
     }
 

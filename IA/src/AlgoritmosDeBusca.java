@@ -28,6 +28,7 @@ public class AlgoritmosDeBusca {
         //adicionando o estado inicial
         listaDeEstados.add(regua);
         estadosVisitados.add(regua);
+        int estadosExpandidos = 0;
         //percorre os sucessores de cada estado visitado até não haver mais estados a visitar.
         while (!listaDeEstados.isEmpty()) {
             //removendo uma regua da lista de estados para verificar se este é meta
@@ -35,10 +36,13 @@ public class AlgoritmosDeBusca {
             //se o estado for meta retorna o estado
             if (element.equals(estadoMeta)) {
             	System.out.println("Quantidade de nos "+ estadosVisitados.size());
+                System.out.println("Quantidade estados expandidos "+ estadosExpandidos);
+                System.out.println("Fator de ramificação " + (float) estadosVisitados.size()/estadosExpandidos);
                 return element;
             }
             //buscando os sucessores do elemento
             List<Regua> vizinhos = element.sucessores();
+            estadosExpandidos+=1;
             //para cada sucessor
             for (int i = 0; i < vizinhos.size(); i++) {
                 Regua r = vizinhos.get(i);
