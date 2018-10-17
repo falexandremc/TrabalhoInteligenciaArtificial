@@ -15,7 +15,7 @@ public class Regua implements Comparable<Regua> {
     private Regua predecessor;
     //indice do #
     private int indice;
-    
+    private int profundidade;
     private int g;
     private int h;
 
@@ -182,6 +182,14 @@ public class Regua implements Comparable<Regua> {
 
 	public void setH(int h) {
 		this.h = h;
+	}
+
+	public int getProfundidade() {
+		return profundidade;
+	}
+
+	public void setProfundidade(int profundidade) {
+		this.profundidade = profundidade;
 	}
    
 }

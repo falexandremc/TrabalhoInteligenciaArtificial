@@ -43,8 +43,14 @@ public class ReguaPuzzle {
         	System.out.println(r);
         	r= r.getPredecessor();
         } 
-        r=busca.DepthFirstSearch(entrada, meta, new HashSet<Regua>(), new ArrayList<>());
-        System.out.println(r);
+        System.out.println("---------- DepthFirstSearch ----------------");
+        r=busca.DepthFirstSearch(entrada, meta);
+        while(r!= null) {
+        	System.out.println(r);
+        	r= r.getPredecessor();
+        } 
+        System.out.println("---------- DepthFirstSearchIteractive--------");
+        r=busca.DepthFirstSearchIteractive(entrada, meta);
         while(r!= null) {
         	System.out.println(r);
         	r= r.getPredecessor();

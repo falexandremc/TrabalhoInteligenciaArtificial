@@ -91,6 +91,43 @@ public class AlgoritmosDeBusca {
         }
         return null;
     }
+    public Regua DepthFirstSearch(Regua regua, Regua estadoMeta) {
+    	//conjunto de estados já visitados. é usado para não verificar um mesmo estado mais de uma vez
+        HashSet<Regua> estadosVisitados = new HashSet<>();
+        //lista de estados
+        ArrayList<Regua> listaDeEstados = new ArrayList<>();
+        //adicionando o estado inicial
+        listaDeEstados.add(regua);
+        estadosVisitados.add(regua);
+        int estadosExpandidos = 0;
+        //percorre os sucessores de cada estado visitado até não haver mais estados a visitar.
+        while (!listaDeEstados.isEmpty()) {
+            //removendo uma regua da lista de estados para verificar se este é meta
+            Regua element = listaDeEstados.remove(listaDeEstados.size()-1);
+            //se o estado for meta retorna o estado
+            if (element.equals(estadoMeta)) {
+            	System.out.println("Quantidade de nos "+ estadosVisitados.size());
+                System.out.println("Quantidade estados expandidos "+ estadosExpandidos);
+                System.out.println("Fator de ramificação " + (float) estadosVisitados.size()/estadosExpandidos);
+                return element;
+            }
+            //buscando os sucessores do elemento
+            List<Regua> vizinhos = element.sucessores();
+            estadosExpandidos+=1;
+            //para cada sucessor
+            for (int i = 0; i < vizinhos.size(); i++) {
+                Regua r = vizinhos.get(i);
+                //se o estado não esta nulo e nem foi visitado
+                if (r != null && !estadosVisitados.contains(r)) {
+                    //adiciona o estado na lista de estados
+                    r.setPredecessor(element);
+                    listaDeEstados.add(r);
+                    estadosVisitados.add(r);
+                }
+            }
+        }
+        return null;
+    }
 
     /**
      * Algoritmo de busca em profundidade recursiva
@@ -104,29 +141,48 @@ public class AlgoritmosDeBusca {
      * @return o caminho do estado inicial até o estado meta ou NULL caso não
      * exista uma solução
      */
-    public Regua DepthFirstSearchIteractive(Regua regua, Regua estadoMeta, HashSet<Regua> estadosVisitados, ArrayList<Regua> listaDeEstados, int profundidade) {
-        //CASO BASE -- se o estado for meta retorna o estado
-        if (regua.equals(estadoMeta)) {
-            return regua;
-        }
-        int profundidadeAtual=1;
+    public Regua DepthFirstSearchIteractive(Regua regua, Regua estadoMeta) {
+        int profundidade=regua.getSize();
+      //conjunto de estados já visitados. é usado para não verificar um mesmo estado mais de uma vez
+        HashSet<Regua> estadosVisitados = new HashSet<>();
+        //lista de estados
+        ArrayList<Regua> listaDeEstados = new ArrayList<>();
         //adicionando o estado inicial
         listaDeEstados.add(regua);
-        //buscando os sucessores da regua
-        Iterator<Regua> reguas = listaDeEstados.remove(0).sucessores().iterator();
-        //enquanto o estado possuir sucessores
-        while (reguas.hasNext() && profundidadeAtual<=profundidade) {
-            Regua r = reguas.next();
-            //visita o proximo estado sucessor se este ja não foi visitado
-            if (r != null && !estadosVisitados.contains(r)) {
-                estadosVisitados.add(r);
-            }
-            if(estadosVisitados.contains(r)){
-                
-            }
-            profundidadeAtual=profundidadeAtual+1;
+        estadosVisitados.add(regua);
+        int estadosExpandidos = 0;
+        //percorre os sucessores de cada estado visitado até não haver mais estados a visitar.
+        while (!listaDeEstados.isEmpty()) {
+        	//removendo uma regua da lista de estados para verificar se este é meta
+        	Regua element = listaDeEstados.remove(listaDeEstados.size()-1);
+        	//se o estado for meta retorna o estado
+        	if (element.equals(estadoMeta)) {
+        		System.out.println("Quantidade de nos "+ estadosVisitados.size());
+        		System.out.println("Quantidade estados expandidos "+ estadosExpandidos);
+        		System.out.println("Fator de ramificação " + (float) estadosVisitados.size()/estadosExpandidos);
+        		return element;
+        	}
+        	if(element.getProfundidade()==profundidade-1) {
+        		continue;
+        	}
+        	//buscando os sucessores do elemento
+        	List<Regua> vizinhos = element.sucessores();
+        	estadosExpandidos+=1;
+        	//para cada sucessor
+        	for (int i = 0; i < vizinhos.size(); i++) {
+        		Regua r = vizinhos.get(i);
+        		//se o estado não esta nulo e nem foi visitado
+        		if (r != null && !estadosVisitados.contains(r)) {
+        			//adiciona o estado na lista de estados
+        			r.setProfundidade(element.getProfundidade()+1);
+        			r.setPredecessor(element);
+        			listaDeEstados.add(r);
+        			estadosVisitados.add(r);
+        		}
+        	}
         }
         return null;
+
     }
     
     public Regua  BestFirstSearch(Regua regua, Regua estadoMeta) {
