@@ -73,7 +73,6 @@ public class ReguaPuzzle {
         	System.out.println(r);
         	r= r.getPredecessor();
         } 
-        //System.out.println(new AlgoritmosDeBusca().idaStar(Game.reguaDeEntrada, Game.reguaDoEstadoMeta).toString());
         
     }
 }
