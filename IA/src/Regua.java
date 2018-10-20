@@ -18,6 +18,7 @@ public class Regua implements Comparable<Regua> {
     private int profundidade;
     private int g;
     private int h;
+    private boolean expandido = false;
 
     public Regua(int n, Character regua[]) {
         this.n = n;
@@ -87,11 +88,11 @@ public class Regua implements Comparable<Regua> {
             return false;
         }
         try {
-        	if(regua[i]=='#') {
-        		indice=j;
-        	}else {
-        		indice=i;
-        	}
+            if (regua[i] == '#') {
+                indice = j;
+            } else {
+                indice = i;
+            }
             Character aux = regua[i];
             regua[i] = regua[j];
             regua[j] = aux;
@@ -116,18 +117,19 @@ public class Regua implements Comparable<Regua> {
             Regua r = new Regua(n, Arrays.copyOf(regua, regua.length));
             //r.setPredecessor(this);
             if (r.troca(i, indice)) {
-            	r.g= this.g + Math.abs(i - indice);
-            	su.add(r);
+                r.g = this.g + Math.abs(i - indice);
+                su.add(r);
             }
         }
         for (int i = indice + 1; i < getSize(); i++) {
             Regua r = new Regua(n, Arrays.copyOf(regua, regua.length));
             //r.setPredecessor(this);
             if (r.troca(i, indice)) {
-            	r.g= this.g + Math.abs(i - indice);
-            	su.add(r);
+                r.g = this.g + Math.abs(i - indice);
+                su.add(r);
             }
         }
+        this.setExpandido(true);
         return su;
     }
 
@@ -136,7 +138,7 @@ public class Regua implements Comparable<Regua> {
     }
 
     public void setPredecessor(Regua predecessor) {
-    	this.predecessor = predecessor;
+        this.predecessor = predecessor;
     }
 
     public String toString() {
@@ -148,48 +150,63 @@ public class Regua implements Comparable<Regua> {
         return this.toString().hashCode();
     }
 
-	@Override
-	public int compareTo(Regua o) {
-		if(this.g + this.h> o.g + o.h) 
-			return 1;
-		else if( this.g+ this.h < o.g+ o.h)
-			return -1;
-		else
-			return 0;
-	}
-    
-	public void calc_H() {
-		h=0;
-		for(int i=0;i<this.n;i++) {
-			if(this.regua[i] != 'A') {
-				h++;
-			}
-		}
-	
-	}
+    @Override
+    public int compareTo(Regua o) {
+        if (this.g + this.h > o.g + o.h) {
+            return 1;
+        } else if (this.g + this.h < o.g + o.h) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
 
-	public int getG() {
-		return g;
-	}
+    public void calc_H() {
+        h = 0;
+        for (int i = 0; i < this.n; i++) {
+            if (this.regua[i] != 'A') {
+                h++;
+            }
+        }
 
-	public void setG(int g) {
-		this.g = g;
-	}
+    }
 
-	public int getH() {
-		return h;
-	}
+    public int getG() {
+        return g;
+    }
 
-	public void setH(int h) {
-		this.h = h;
-	}
+    public void setG(int g) {
+        this.g = g;
+    }
 
-	public int getProfundidade() {
-		return profundidade;
-	}
+    public int getH() {
+        return h;
+    }
 
-	public void setProfundidade(int profundidade) {
-		this.profundidade = profundidade;
-	}
-   
+    public void setH(int h) {
+        this.h = h;
+    }
+
+    public int getProfundidade() {
+        return profundidade;
+    }
+
+    public void setProfundidade(int profundidade) {
+        this.profundidade = profundidade;
+    }
+
+    /**
+     * @return the expandido
+     */
+    public boolean isExpandido() {
+        return expandido;
+    }
+
+    /**
+     * @param expandido the expandido to set
+     */
+    public void setExpandido(boolean expandido) {
+        this.expandido = expandido;
+    }
+
 }
