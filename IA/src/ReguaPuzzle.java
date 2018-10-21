@@ -9,7 +9,7 @@ import java.util.HashSet;
  */
 public class ReguaPuzzle {
 
-    Regua reguaDoEstadoMeta;
+    ArrayList<Regua> reguaDoEstadoMeta;
     Regua reguaDeEntrada;
 
     public ReguaPuzzle(Regua reguaDeEntrada) {
@@ -19,13 +19,22 @@ public class ReguaPuzzle {
     }
 
     private void CalcularEstadoMeta() {
-        reguaDoEstadoMeta = new Regua(reguaDeEntrada.getN(), Arrays.copyOf(reguaDeEntrada.getRegua(),reguaDeEntrada.getSize()));
-        //adiciona espaco vazio ao meio da regua
-        reguaDoEstadoMeta.setI(reguaDeEntrada.getN(), '#');
-        //preenche do inicio ate o meio da regua com 'B' e do final ate o meio com 'A'
-        for (int i = 0; i < reguaDeEntrada.getN(); i++) {
-            reguaDoEstadoMeta.setI(i, 'B');
-            reguaDoEstadoMeta.setI((reguaDeEntrada.getSize() - 1) - i, 'A');
+    	reguaDoEstadoMeta=new ArrayList<>();
+        for(int i=0;i<reguaDeEntrada.getSize();i++) {
+        	Character aux[]= new Character[reguaDeEntrada.getSize()];
+        	int cont=0;
+        	for(int j=0;j<reguaDeEntrada.getSize();j++) {
+        		if(i==j) {
+        			aux[j]='#';
+        		}else if(cont <reguaDeEntrada.getN() ) {
+        			aux[j]='B';
+        			cont++;
+        		}else {
+        			aux[j]='A';
+        		}
+        	}
+        	Regua meta = new Regua(reguaDeEntrada.getN(), Arrays.copyOf(aux,aux.length));
+        	reguaDoEstadoMeta.add(meta);
         }
     }
 
@@ -35,7 +44,7 @@ public class ReguaPuzzle {
         args[1] = "BBAB#BAAA";
         ReguaPuzzle Game = new ReguaPuzzle(new Regua(Integer.parseInt(args[0]), args[1]));
         Regua entrada=Game.reguaDeEntrada;
-        Regua meta=Game.reguaDoEstadoMeta;
+       ArrayList<Regua> meta=Game.reguaDoEstadoMeta;
         AlgoritmosDeBusca busca= new AlgoritmosDeBusca();
        System.out.println("--------- BreadthFirstSearch ---------");
         Regua r= busca.BreadthFirstSearch(entrada, meta);

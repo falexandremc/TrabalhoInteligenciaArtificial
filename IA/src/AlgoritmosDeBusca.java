@@ -20,7 +20,7 @@ public class AlgoritmosDeBusca {
      * @return o caminho do estado inicial até o estado meta ou NULL caso não
      * exista uma solução
      */
-    public Regua BreadthFirstSearch(Regua regua, Regua estadoMeta) {
+    public Regua BreadthFirstSearch(Regua regua, ArrayList<Regua> estadoMeta) {
         //conjunto de estados já visitados. é usado para não verificar um mesmo estado mais de uma vez
         HashSet<Regua> estadosVisitados = new HashSet<>();
         //lista de estados
@@ -34,19 +34,21 @@ public class AlgoritmosDeBusca {
             //removendo uma regua da lista de estados para verificar se este é meta
             Regua element = listaDeEstados.remove(0);
             //se o estado for meta retorna o estado
-            if (element.equals(estadoMeta)) {
-                System.out.println("Quantidade de nos " + estadosVisitados.size());
-                //Verifica quantos estados foram expandidos até achar a solução
-                Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                while (estadosTestes.hasNext()) {
-                    Regua estadoTeste = estadosTestes.next();
-                    if (estadoTeste.isExpandido()) {
-                        estadosExpandidos += 1;
+            for(int i=0;i<estadoMeta.size();i++) {
+            	if (element.equals(estadoMeta.get(i))) {
+                    System.out.println("Quantidade de nos " + estadosVisitados.size());
+                    //Verifica quantos estados foram expandidos até achar a solução
+                    Iterator<Regua> estadosTestes = estadosVisitados.iterator();
+                    while (estadosTestes.hasNext()) {
+                        Regua estadoTeste = estadosTestes.next();
+                        if (estadoTeste.isExpandido()) {
+                            estadosExpandidos += 1;
+                        }
                     }
+                    System.out.println("Quantidade estados expandidos " + estadosExpandidos);
+                    System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
+                    return element;
                 }
-                System.out.println("Quantidade estados expandidos " + estadosExpandidos);
-                System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
-                return element;
             }
             //buscando os sucessores do elemento
             List<Regua> vizinhos = element.sucessores();
@@ -99,7 +101,7 @@ public class AlgoritmosDeBusca {
         return null;
     }
 
-    public Regua DepthFirstSearch(Regua regua, Regua estadoMeta) {
+    public Regua DepthFirstSearch(Regua regua, ArrayList<Regua> estadoMeta) {
         //conjunto de estados já visitados. é usado para não verificar um mesmo estado mais de uma vez
         HashSet<Regua> estadosVisitados = new HashSet<>();
         //lista de estados
@@ -113,19 +115,21 @@ public class AlgoritmosDeBusca {
             //removendo uma regua da lista de estados para verificar se este é meta
             Regua element = listaDeEstados.remove(listaDeEstados.size() - 1);
             //se o estado for meta retorna o estado
-            if (element.equals(estadoMeta)) {
-                System.out.println("Quantidade de nos " + estadosVisitados.size());
-                //Verifica quantos estados foram expandidos até achar a solução
-                Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                while (estadosTestes.hasNext()) {
-                    Regua estadoTeste = estadosTestes.next();
-                    if (estadoTeste.isExpandido()) {
-                        estadosExpandidos += 1;
+            for(int i=0;i<estadoMeta.size();i++) {
+            	if (element.equals(estadoMeta.get(i))) {
+                    System.out.println("Quantidade de nos " + estadosVisitados.size());
+                    //Verifica quantos estados foram expandidos até achar a solução
+                    Iterator<Regua> estadosTestes = estadosVisitados.iterator();
+                    while (estadosTestes.hasNext()) {
+                        Regua estadoTeste = estadosTestes.next();
+                        if (estadoTeste.isExpandido()) {
+                            estadosExpandidos += 1;
+                        }
                     }
+                    System.out.println("Quantidade estados expandidos " + estadosExpandidos);
+                    System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
+                    return element;
                 }
-                System.out.println("Quantidade estados expandidos " + estadosExpandidos);
-                System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
-                return element;
             }
             //buscando os sucessores do elemento
             List<Regua> vizinhos = element.sucessores();
@@ -156,7 +160,7 @@ public class AlgoritmosDeBusca {
      * @return o caminho do estado inicial até o estado meta ou NULL caso não
      * exista uma solução
      */
-    public Regua DepthFirstSearchIteractive(Regua regua, Regua estadoMeta) {
+    public Regua DepthFirstSearchIteractive(Regua regua, ArrayList<Regua> estadoMeta) {
         int profundidade = regua.getSize();
         //conjunto de estados já visitados. é usado para não verificar um mesmo estado mais de uma vez
         HashSet<Regua> estadosVisitados = new HashSet<>();
@@ -171,19 +175,21 @@ public class AlgoritmosDeBusca {
             //removendo uma regua da lista de estados para verificar se este é meta
             Regua element = listaDeEstados.remove(listaDeEstados.size() - 1);
             //se o estado for meta retorna o estado
-            if (element.equals(estadoMeta)) {
-                System.out.println("Quantidade de nos " + estadosVisitados.size());
-                //Verifica quantos estados foram expandidos até achar a solução
-                Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                while (estadosTestes.hasNext()) {
-                    Regua estadoTeste = estadosTestes.next();
-                    if (estadoTeste.isExpandido()) {
-                        estadosExpandidos += 1;
+            for(int i=0; i<estadoMeta.size();i++) {
+            	if (element.equals(estadoMeta.get(i))) {
+                    System.out.println("Quantidade de nos " + estadosVisitados.size());
+                    //Verifica quantos estados foram expandidos até achar a solução
+                    Iterator<Regua> estadosTestes = estadosVisitados.iterator();
+                    while (estadosTestes.hasNext()) {
+                        Regua estadoTeste = estadosTestes.next();
+                        if (estadoTeste.isExpandido()) {
+                            estadosExpandidos += 1;
+                        }
                     }
+                    System.out.println("Quantidade estados expandidos " + estadosExpandidos);
+                    System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
+                    return element;
                 }
-                System.out.println("Quantidade estados expandidos " + estadosExpandidos);
-                System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
-                return element;
             }
             if (element.getProfundidade() == profundidade - 1) {
                 continue;
@@ -207,7 +213,7 @@ public class AlgoritmosDeBusca {
 
     }
 
-    public Regua BestFirstSearch(Regua regua, Regua estadoMeta) {
+    public Regua BestFirstSearch(Regua regua, ArrayList<Regua> estadoMeta) {
         //conjunto de estados já visitados. é usado para não verificar um mesmo estado mais de uma vez
         HashSet<Regua> estadosVisitados = new HashSet<Regua>();
         //lista de estados
@@ -218,19 +224,21 @@ public class AlgoritmosDeBusca {
         int estadosExpandidos = 0;
         while (!estados.isEmpty()) {
             Regua r = estados.poll();
-            if (r.equals(estadoMeta)) {
-                System.out.println("Quantidade de nos " + estadosVisitados.size());
-                //Verifica quantos estados foram expandidos até achar a solução
-                Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                while (estadosTestes.hasNext()) {
-                    Regua estadoTeste = estadosTestes.next();
-                    if (estadoTeste.isExpandido()) {
-                        estadosExpandidos += 1;
+            for(int i=0; i<estadoMeta.size();i++) {
+            	if (r.equals(estadoMeta.get(i))) {
+                    System.out.println("Quantidade de nos " + estadosVisitados.size());
+                    //Verifica quantos estados foram expandidos até achar a solução
+                    Iterator<Regua> estadosTestes = estadosVisitados.iterator();
+                    while (estadosTestes.hasNext()) {
+                        Regua estadoTeste = estadosTestes.next();
+                        if (estadoTeste.isExpandido()) {
+                            estadosExpandidos += 1;
+                        }
                     }
+                    System.out.println("Quantidade estados expandidos " + estadosExpandidos);
+                    System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
+                    return r;
                 }
-                System.out.println("Quantidade estados expandidos " + estadosExpandidos);
-                System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
-                return r;
             }
             //buscando os sucessores do elemento
             List<Regua> vizinhos = r.sucessores();
@@ -251,7 +259,7 @@ public class AlgoritmosDeBusca {
 
     }
 
-    public Regua aStar(Regua regua, Regua estadoMeta) {
+    public Regua aStar(Regua regua, ArrayList<Regua> estadoMeta) {
         //conjunto de estados já visitados. é usado para não verificar um mesmo estado mais de uma vez
         HashSet<Regua> estadosVisitados = new HashSet<Regua>();
         //lista de estados
@@ -264,20 +272,23 @@ public class AlgoritmosDeBusca {
 
         while (!estados.isEmpty()) {
             Regua r = estados.poll();
-            if (r.equals(estadoMeta)) {
-                System.out.println("Quantidade de nos " + estadosVisitados.size());
-                //Verifica quantos estados foram expandidos até achar a solução
-                Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                while (estadosTestes.hasNext()) {
-                    Regua estadoTeste = estadosTestes.next();
-                    if (estadoTeste.isExpandido()) {
-                        estadosExpandidos += 1;
+            for(int i=0;i<estadoMeta.size();i++) {
+            	if (r.equals(estadoMeta.get(i))) {
+                    System.out.println("Quantidade de nos " + estadosVisitados.size());
+                    //Verifica quantos estados foram expandidos até achar a solução
+                    Iterator<Regua> estadosTestes = estadosVisitados.iterator();
+                    while (estadosTestes.hasNext()) {
+                        Regua estadoTeste = estadosTestes.next();
+                        if (estadoTeste.isExpandido()) {
+                            estadosExpandidos += 1;
+                        }
                     }
+                    System.out.println("Quantidade estados expandidos " + estadosExpandidos);
+                    System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
+                    return r;
                 }
-                System.out.println("Quantidade estados expandidos " + estadosExpandidos);
-                System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
-                return r;
             }
+            
             //buscando os sucessores do elemento
             ArrayList<Regua> vizinhos = r.sucessores();
             //para cada sucessor
@@ -297,7 +308,7 @@ public class AlgoritmosDeBusca {
         return null;
     }
 
-    public Regua idaStar(Regua regua, Regua estadoMeta) {
+    public Regua idaStar(Regua regua, ArrayList<Regua> estadoMeta) {
         //conjunto de estados já visitados. é usado para não verificar um mesmo estado mais de uma vez
         HashSet<Regua> estadosVisitados = new HashSet<Regua>();
         //lista de estados
@@ -312,20 +323,23 @@ public class AlgoritmosDeBusca {
             Regua r = estados.poll();
             //verificar ate limite
             while (r.getG() + r.getH() <= l) {
-                if (r.equals(estadoMeta)) {
-                    System.out.println("Quantidade de nos " + estadosVisitados.size());
-                    //Verifica quantos estados foram expandidos até achar a solução
-                    Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                    while (estadosTestes.hasNext()) {
-                        Regua estadoTeste = estadosTestes.next();
-                        if (estadoTeste.isExpandido()) {
-                            estadosExpandidos += 1;
+            	for(int i=0;i<estadoMeta.size();i++) {
+            		if (r.equals(estadoMeta.get(i))) {
+                        System.out.println("Quantidade de nos " + estadosVisitados.size());
+                        //Verifica quantos estados foram expandidos até achar a solução
+                        Iterator<Regua> estadosTestes = estadosVisitados.iterator();
+                        while (estadosTestes.hasNext()) {
+                            Regua estadoTeste = estadosTestes.next();
+                            if (estadoTeste.isExpandido()) {
+                                estadosExpandidos += 1;
+                            }
                         }
+                        System.out.println("Quantidade estados expandidos " + estadosExpandidos);
+                        System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
+                        return r;
                     }
-                    System.out.println("Quantidade estados expandidos " + estadosExpandidos);
-                    System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
-                    return r;
-                }
+            	}
+                
                 //buscando os sucessores do elemento
                 ArrayList<Regua> vizinhos = r.sucessores();
                 //para cada sucessor
