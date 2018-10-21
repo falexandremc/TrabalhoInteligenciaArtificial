@@ -40,8 +40,8 @@ public class ReguaPuzzle {
 
     public static void main(String[] args) {
         args = new String[2];
-        args[0] = "4";
-        args[1] = "BBAB#BAAA";
+        args[0] = "8";
+        args[1] = "AABBBBAB#BAAABBAA";
         ReguaPuzzle Game = new ReguaPuzzle(new Regua(Integer.parseInt(args[0]), args[1]));
         Regua entrada=Game.reguaDeEntrada;
         ArrayList<Regua> meta=Game.reguaDoEstadoMeta;
@@ -50,20 +50,20 @@ public class ReguaPuzzle {
         double timeInicio = System.nanoTime();
         Regua r= busca.BreadthFirstSearch(entrada, meta);
         double timeFinal = System.nanoTime();
+        System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
         while(r!= null) {
         	System.out.println(r);
         	r= r.getPredecessor();
         } 
-        System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
         System.out.println("---------- DepthFirstSearch ----------------");
         timeInicio = System.nanoTime();
         r=busca.DepthFirstSearch(entrada, meta);
         timeFinal = System.nanoTime();
+        System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
         while(r!= null) {
         	System.out.println(r);
         	r= r.getPredecessor();
         }
-        System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
         System.out.println("---------- DepthFirstSearchIteractive--------");
         timeInicio = System.nanoTime();
         r=busca.DepthFirstSearchIteractive(entrada, meta);
