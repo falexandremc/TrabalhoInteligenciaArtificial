@@ -44,40 +44,58 @@ public class ReguaPuzzle {
         args[1] = "BBAB#BAAA";
         ReguaPuzzle Game = new ReguaPuzzle(new Regua(Integer.parseInt(args[0]), args[1]));
         Regua entrada=Game.reguaDeEntrada;
-       ArrayList<Regua> meta=Game.reguaDoEstadoMeta;
+        ArrayList<Regua> meta=Game.reguaDoEstadoMeta;
         AlgoritmosDeBusca busca= new AlgoritmosDeBusca();
-       System.out.println("--------- BreadthFirstSearch ---------");
+        System.out.println("--------- BreadthFirstSearch ---------");
+        double timeInicio = System.nanoTime();
         Regua r= busca.BreadthFirstSearch(entrada, meta);
+        double timeFinal = System.nanoTime();
         while(r!= null) {
         	System.out.println(r);
         	r= r.getPredecessor();
         } 
+        System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
         System.out.println("---------- DepthFirstSearch ----------------");
+        timeInicio = System.nanoTime();
         r=busca.DepthFirstSearch(entrada, meta);
+        timeFinal = System.nanoTime();
         while(r!= null) {
         	System.out.println(r);
         	r= r.getPredecessor();
-        } 
+        }
+        System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
         System.out.println("---------- DepthFirstSearchIteractive--------");
+        timeInicio = System.nanoTime();
         r=busca.DepthFirstSearchIteractive(entrada, meta);
+        timeFinal = System.nanoTime();
+        System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
         while(r!= null) {
         	System.out.println(r);
         	r= r.getPredecessor();
         } 
         System.out.println("--------- BestFirstSearch ---------");
+        timeInicio = System.nanoTime();
         r=busca.BestFirstSearch(entrada, meta);
+        timeFinal = System.nanoTime();
+        System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
         while(r!= null) {
         	System.out.println(r);
         	r= r.getPredecessor();
         }
         System.out.println("-------- A* -------------");
+        timeInicio = System.nanoTime();
         r=busca.aStar(entrada, meta);
+        timeFinal = System.nanoTime();
+        System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
         while(r!= null) {
         	System.out.println(r);
         	r= r.getPredecessor();
         } 
         System.out.println("-------- IDA* -------------");
+        timeInicio = System.nanoTime();
         r=busca.idaStar(entrada, meta);
+        timeFinal = System.nanoTime();
+        System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
         while(r!= null) {
         	System.out.println(r);
         	r= r.getPredecessor();
