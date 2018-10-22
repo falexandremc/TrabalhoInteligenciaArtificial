@@ -58,6 +58,7 @@ public class AlgoritmosDeBusca {
                 //se o estado não esta nulo e nem foi visitado
                 if (r != null && !estadosVisitados.contains(r)) {
                     //adiciona o estado na lista de estados
+                	r.setProfundidade(element.getProfundidade()+1);
                     r.setPredecessor(element);
                     listaDeEstados.add(r);
                     estadosVisitados.add(r);
@@ -68,38 +69,14 @@ public class AlgoritmosDeBusca {
     }
 
     /**
-     * Algoritmo de busca em profundidade recursiva
+     * Algoritmo de busca em profundidade
      *
      * @param regua Regua do estado inicial
      * @param estadoMeta Regua do estado méta. o algoritmo para quando esse
      * estado é alcançado
-     * @param estadosVisitados conjunto de estados já visitados. é usado para
-     * não verificar um mesmo estado mais de uma vez
-     * @param listaDeEstados lista de estados
      * @return o caminho do estado inicial até o estado meta ou NULL caso não
      * exista uma solução
      */
-    public Regua DepthFirstSearch(Regua regua, Regua estadoMeta, HashSet<Regua> estadosVisitados, ArrayList<Regua> listaDeEstados) {
-        //CASO BASE -- se o estado for meta retorna o estado
-        if (regua.equals(estadoMeta)) {
-            return regua;
-        }
-        //adicionando o estado inicial
-        listaDeEstados.add(regua);
-        //buscando os sucessores da regua
-        Iterator<Regua> reguas = listaDeEstados.remove(0).sucessores().iterator();
-        //enquanto o estado possuir sucessores
-
-        while (reguas.hasNext()) {
-            Regua r = reguas.next();
-            //visita o proximo estado sucessor se este ja não foi visitado
-            if (r != null && !estadosVisitados.contains(r)) {
-                estadosVisitados.add(r);
-                DepthFirstSearch(r, estadoMeta, estadosVisitados, listaDeEstados);
-            }
-        }
-        return null;
-    }
 
     public Regua DepthFirstSearch(Regua regua, ArrayList<Regua> estadoMeta) {
         //conjunto de estados já visitados. é usado para não verificar um mesmo estado mais de uma vez
@@ -140,6 +117,7 @@ public class AlgoritmosDeBusca {
                 if (r != null && !estadosVisitados.contains(r)) {
                     //adiciona o estado na lista de estados
                     r.setPredecessor(element);
+                    r.setProfundidade(element.getProfundidade()+1);
                     listaDeEstados.add(r);
                     estadosVisitados.add(r);
                 }
@@ -149,7 +127,7 @@ public class AlgoritmosDeBusca {
     }
 
     /**
-     * Algoritmo de busca em profundidade recursiva
+     * Algoritmo de busca em profundidade 
      *
      * @param regua Regua do estado inicial
      * @param estadoMeta Regua do estado méta. o algoritmo para quando esse
@@ -250,6 +228,7 @@ public class AlgoritmosDeBusca {
                 if (aux != null && !estadosVisitados.contains(aux)) {
                     //adiciona o estado na lista de estados
                     aux.setPredecessor(r);
+                    aux.setProfundidade(r.getProfundidade()+1);
                     estados.add(aux);
                     estadosVisitados.add(aux);
                 }
@@ -300,6 +279,7 @@ public class AlgoritmosDeBusca {
                     aux.calc_H();
                     //adiciona o estado na lista de estados
                     aux.setPredecessor(r);
+                    aux.setProfundidade(r.getProfundidade()+1);
                     estados.add(aux);
                     estadosVisitados.add(aux);
                 }
@@ -351,6 +331,7 @@ public class AlgoritmosDeBusca {
                         aux.calc_H();
                         //adiciona o estado na lista de estados
                         aux.setPredecessor(r);
+                        aux.setProfundidade(r.getProfundidade()+1);
                         estados.add(aux);
                         estadosVisitados.add(aux);
                     }
