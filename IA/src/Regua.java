@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- *
+ * @author George
  * @author Alexandre
  */
 public class Regua implements Comparable<Regua> {
@@ -152,9 +152,9 @@ public class Regua implements Comparable<Regua> {
 
     @Override
     public int compareTo(Regua o) {
-        if (this.g + this.h > o.g + o.h) {
+        if (this.h > o.h) {
             return 1;
-        } else if (this.g + this.h < o.g + o.h) {
+        } else if (this.h < o.h) {
             return -1;
         } else {
             return 0;

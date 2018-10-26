@@ -38,13 +38,6 @@ public class AlgoritmosDeBusca {
             	if (element.equals(estadoMeta.get(i))) {
                     System.out.println("Quantidade de nos " + estadosVisitados.size());
                     //Verifica quantos estados foram expandidos até achar a solução
-                    Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                    while (estadosTestes.hasNext()) {
-                        Regua estadoTeste = estadosTestes.next();
-                        if (estadoTeste.isExpandido()) {
-                            estadosExpandidos += 1;
-                        }
-                    }
                     System.out.println("Quantidade estados expandidos " + estadosExpandidos);
                     System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
                     return element;
@@ -52,6 +45,7 @@ public class AlgoritmosDeBusca {
             }
             //buscando os sucessores do elemento
             List<Regua> vizinhos = element.sucessores();
+            estadosExpandidos++;
             //para cada sucessor
             for (int i = 0; i < vizinhos.size(); i++) {
                 Regua r = vizinhos.get(i);
@@ -96,13 +90,6 @@ public class AlgoritmosDeBusca {
             	if (element.equals(estadoMeta.get(i))) {
                     System.out.println("Quantidade de nos " + estadosVisitados.size());
                     //Verifica quantos estados foram expandidos até achar a solução
-                    Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                    while (estadosTestes.hasNext()) {
-                        Regua estadoTeste = estadosTestes.next();
-                        if (estadoTeste.isExpandido()) {
-                            estadosExpandidos += 1;
-                        }
-                    }
                     System.out.println("Quantidade estados expandidos " + estadosExpandidos);
                     System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
                     return element;
@@ -110,6 +97,7 @@ public class AlgoritmosDeBusca {
             }
             //buscando os sucessores do elemento
             List<Regua> vizinhos = element.sucessores();
+            estadosExpandidos++;
             //para cada sucessor
             for (int i = 0; i < vizinhos.size(); i++) {
                 Regua r = vizinhos.get(i);
@@ -157,13 +145,6 @@ public class AlgoritmosDeBusca {
             	if (element.equals(estadoMeta.get(i))) {
                     System.out.println("Quantidade de nos " + estadosVisitados.size());
                     //Verifica quantos estados foram expandidos até achar a solução
-                    Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                    while (estadosTestes.hasNext()) {
-                        Regua estadoTeste = estadosTestes.next();
-                        if (estadoTeste.isExpandido()) {
-                            estadosExpandidos += 1;
-                        }
-                    }
                     System.out.println("Quantidade estados expandidos " + estadosExpandidos);
                     System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
                     return element;
@@ -174,6 +155,7 @@ public class AlgoritmosDeBusca {
             }
             //buscando os sucessores do elemento
             List<Regua> vizinhos = element.sucessores();
+            estadosExpandidos++;
             //para cada sucessor
             for (int i = 0; i < vizinhos.size(); i++) {
                 Regua r = vizinhos.get(i);
@@ -205,14 +187,6 @@ public class AlgoritmosDeBusca {
             for(int i=0; i<estadoMeta.size();i++) {
             	if (r.equals(estadoMeta.get(i))) {
                     System.out.println("Quantidade de nos " + estadosVisitados.size());
-                    //Verifica quantos estados foram expandidos até achar a solução
-                    Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                    while (estadosTestes.hasNext()) {
-                        Regua estadoTeste = estadosTestes.next();
-                        if (estadoTeste.isExpandido()) {
-                            estadosExpandidos += 1;
-                        }
-                    }
                     System.out.println("Quantidade estados expandidos " + estadosExpandidos);
                     System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
                     return r;
@@ -220,7 +194,7 @@ public class AlgoritmosDeBusca {
             }
             //buscando os sucessores do elemento
             List<Regua> vizinhos = r.sucessores();
-
+            estadosExpandidos++;
             //para cada sucessor
             for (int i = 0; i < vizinhos.size(); i++) {
                 Regua aux = vizinhos.get(i);
@@ -255,13 +229,6 @@ public class AlgoritmosDeBusca {
             	if (r.equals(estadoMeta.get(i))) {
                     System.out.println("Quantidade de nos " + estadosVisitados.size());
                     //Verifica quantos estados foram expandidos até achar a solução
-                    Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                    while (estadosTestes.hasNext()) {
-                        Regua estadoTeste = estadosTestes.next();
-                        if (estadoTeste.isExpandido()) {
-                            estadosExpandidos += 1;
-                        }
-                    }
                     System.out.println("Quantidade estados expandidos " + estadosExpandidos);
                     System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
                     return r;
@@ -270,6 +237,7 @@ public class AlgoritmosDeBusca {
             
             //buscando os sucessores do elemento
             ArrayList<Regua> vizinhos = r.sucessores();
+            estadosExpandidos++;
             //para cada sucessor
             for (int i = 0; i < vizinhos.size(); i++) {
                 Regua aux = vizinhos.get(i);
@@ -306,14 +274,6 @@ public class AlgoritmosDeBusca {
             	for(int i=0;i<estadoMeta.size();i++) {
             		if (r.equals(estadoMeta.get(i))) {
                         System.out.println("Quantidade de nos " + estadosVisitados.size());
-                        //Verifica quantos estados foram expandidos até achar a solução
-                        Iterator<Regua> estadosTestes = estadosVisitados.iterator();
-                        while (estadosTestes.hasNext()) {
-                            Regua estadoTeste = estadosTestes.next();
-                            if (estadoTeste.isExpandido()) {
-                                estadosExpandidos += 1;
-                            }
-                        }
                         System.out.println("Quantidade estados expandidos " + estadosExpandidos);
                         System.out.println("Fator de ramificação " + (float) estadosVisitados.size() / estadosExpandidos);
                         return r;
@@ -322,6 +282,7 @@ public class AlgoritmosDeBusca {
                 
                 //buscando os sucessores do elemento
                 ArrayList<Regua> vizinhos = r.sucessores();
+                estadosExpandidos++;
                 //para cada sucessor
                 for (int i = 0; i < vizinhos.size(); i++) {
                     Regua aux = vizinhos.get(i);

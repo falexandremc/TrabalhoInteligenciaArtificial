@@ -21,6 +21,15 @@ public class ReguaPuzzle {
         //System.out.println(reguaDeEntrada.toString());
         CalcularEstadoMeta();
     }
+    public void imprimeCaminho(Regua r) {
+    	if(r.getPredecessor()== null) {
+          	System.out.println(r);
+        }else {
+        	imprimeCaminho(r.getPredecessor());
+        	System.out.println(r);
+        }
+    	
+    }
 
     private void CalcularEstadoMeta() {
     	reguaDoEstadoMeta=new ArrayList<>();
@@ -43,7 +52,7 @@ public class ReguaPuzzle {
     }
 
     public static void main(String[] args) {
-    
+ 
         Scanner ler = new Scanner(System.in);
         
         System.out.printf("Informe o nome de arquivo texto:\n");
@@ -61,67 +70,53 @@ public class ReguaPuzzle {
           ReguaPuzzle Game = new ReguaPuzzle(new Regua(n, linha));
           Regua entrada=Game.reguaDeEntrada;
           ArrayList<Regua> meta=Game.reguaDoEstadoMeta;
+          double timeInicio;
+          double timeFinal;
+          Regua r;
           AlgoritmosDeBusca busca= new AlgoritmosDeBusca();
+          
           System.out.println("--------- BreadthFirstSearch ---------");
-          double timeInicio = System.nanoTime();
-          Regua r= busca.BreadthFirstSearch(entrada, meta);
-          double timeFinal = System.nanoTime();
+          timeInicio = System.nanoTime();
+          r= busca.BreadthFirstSearch(entrada, meta);
+          timeFinal = System.nanoTime();
           System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
-          System.out.println("Profundidade da solucao "+r.getProfundidade());
-          while(r!= null) {
-          	System.out.println(r);
-          	r= r.getPredecessor();
-          } 
+          System.out.println("Nivel da solucao "+r.getProfundidade());
+          Game.imprimeCaminho(r);
           System.out.println("---------- DepthFirstSearch ----------------");
           timeInicio = System.nanoTime();
           r=busca.DepthFirstSearch(entrada, meta);
           timeFinal = System.nanoTime();
           System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
-          System.out.println("Profundidade da solucao "+r.getProfundidade());
-          while(r!= null) {
-          	System.out.println(r);
-          	r= r.getPredecessor();
-          }
+          System.out.println("Nivel da solucao "+r.getProfundidade());
+          Game.imprimeCaminho(r);
           System.out.println("---------- DepthFirstSearchIteractive--------");
           timeInicio = System.nanoTime();
           r=busca.DepthFirstSearchIteractive(entrada, meta);
           timeFinal = System.nanoTime();
           System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
-          System.out.println("Profundidade da solucao "+r.getProfundidade());
-          while(r!= null) {
-          	System.out.println(r);
-          	r= r.getPredecessor();
-          } 
+          System.out.println("Nivel da solucao "+r.getProfundidade());
+          Game.imprimeCaminho(r);
           System.out.println("--------- BestFirstSearch ---------");
           timeInicio = System.nanoTime();
           r=busca.BestFirstSearch(entrada, meta);
           timeFinal = System.nanoTime();
           System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
           System.out.println("Profundidade da solucao "+r.getProfundidade());
-          while(r!= null) {
-          	System.out.println(r);
-          	r= r.getPredecessor();
-          }
+          Game.imprimeCaminho(r);
           System.out.println("-------- A* -------------");
           timeInicio = System.nanoTime();
           r=busca.aStar(entrada, meta);
           timeFinal = System.nanoTime();
           System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
-          System.out.println("Profundidade da solucao "+r.getProfundidade());
-          while(r!= null) {
-          	System.out.println(r);
-          	r= r.getPredecessor();
-          } 
+          System.out.println("Nivel da solucao "+r.getProfundidade());
+          Game.imprimeCaminho(r);
           System.out.println("-------- IDA* -------------");
           timeInicio = System.nanoTime();
           r=busca.idaStar(entrada, meta);
           timeFinal = System.nanoTime();
           System.out.println("Tempo "+ ((timeFinal - timeInicio)*0.000000001));
-          System.out.println("Profundidade da solucao "+r.getProfundidade());
-          while(r!= null) {
-          	System.out.println(r);
-          	r= r.getPredecessor();
-          }
+          System.out.println("Nivel da solucao "+r.getProfundidade());
+          Game.imprimeCaminho(r);
           arq.close();
         } catch (IOException e) {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
