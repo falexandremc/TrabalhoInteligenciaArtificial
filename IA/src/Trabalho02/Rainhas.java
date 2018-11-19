@@ -2,19 +2,25 @@ package Trabalho02;
 
 public class Rainhas {
 	
-	private int nColi;
+	private int numColisao;
+	private int tamTabuleiro;
+	private int tabuleiro[];
 	
+	public Rainhas(int tamTabuleiro) {
+		this.tamTabuleiro=tamTabuleiro;
+		this.tabuleiro=new int [tamTabuleiro];
+	}
 	public Rainhas vizinhos() {
-		
+		//a fazer
 		return null;
 	}
 
-	public int getnColi() {
-		return nColi;
+	public int getNumColisao() {
+		return numColisao;
 	}
 
-	public void setnColi(int nColi) {
-		this.nColi = nColi;
+	public void setNumColisao(int numColisao) {
+		this.numColisao = numColisao;
 	}
 	
 }

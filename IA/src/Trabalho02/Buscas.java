@@ -4,11 +4,11 @@ public class Buscas {
 	public Rainhas subidaE(Rainhas inicio) {
 		int i=0;
 		while(true) {
-			if (inicio.getnColi()==0){
+			if (inicio.getNumColisao()==0){
 				return inicio;
 			}
 			Rainhas rainha=inicio.vizinhos();
-			if(rainha.getnColi()< inicio.getnColi()) {
+			if(rainha.getNumColisao()< inicio.getNumColisao()) {
 					inicio=rainha;
 					i++;
 			}else {
