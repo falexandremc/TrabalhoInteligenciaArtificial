@@ -7,17 +7,16 @@ public class Buscas {
 			if (inicio.getNumColisao()==0){
 				return inicio;
 			}
-			Rainhas rainha=inicio.vizinhos();
+			Rainhas rainha=inicio.vizinho();
 			if(rainha.getNumColisao()< inicio.getNumColisao()) {
 					inicio=rainha;
-					i++;
 			}else {
-				if(i==3) {
-					
+				if(i<=3) {
+					inicio=Rainhas.rainhaAleatoria(inicio.getTamTabuleiro());
+					continue;
 				}else {
 					return null;
 				}
-				
 			}
 		}
 		
