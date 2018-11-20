@@ -87,11 +87,6 @@ public enum ConsoleColors {
     public String toString() {
         return code;
     }
-    public void exibir(){
-        System.out.print(ConsoleColors.BLUE_BACKGROUND);
-        System.out.println("111111111aaaaaaaaaaaaaaaa==============");
-        System.out.print(ConsoleColors.RESET);
-    }
     
 }
 
