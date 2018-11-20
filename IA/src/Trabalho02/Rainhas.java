@@ -89,6 +89,7 @@ public class Rainhas implements Comparable<Rainhas>{
 		for(int i=0;i<tamTabuleiro;i++) {
 			System.out.print(" "+tabuleiro[i]);
 		}
+		System.out.println();
 	}
 	public int getTamTabuleiro() {
 		return tamTabuleiro;

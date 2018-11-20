@@ -13,8 +13,9 @@ public class Buscas {
 			if(rainha.getNumColisao()< inicio.getNumColisao()) {
 					inicio=rainha;
 			}else {
-				if(i<=3) {
+				if(i<=10) {
 					inicio=Rainhas.rainhaAleatoria(inicio.getTamTabuleiro());
+					i++;
 					continue;
 				}else {
 					return null;
