@@ -17,11 +17,16 @@ public class Rainhas implements Comparable<Rainhas>{
 	public Rainhas(int tamTabuleiro) {
 		this.setTamTabuleiro(tamTabuleiro);
 		this.tabuleiro=new int [tamTabuleiro];
+		this.diagonal=new int [tamTabuleiro];
+		this.diagonalSegun=new int [tamTabuleiro];
+		this.numColisao=0;
 	}
 	public Rainhas(int tamTabuleiro,int tabuleiro[]) {
 		this.setTamTabuleiro(tamTabuleiro);
 		this.tabuleiro=tabuleiro;
-		this.atualizaDiagonais();
+		this.diagonal=new int [tamTabuleiro];
+		this.diagonalSegun=new int [tamTabuleiro];
+		this.numColisao=0;
 	}
 	public Rainhas vizinho() {
 		PriorityQueue<Rainhas> estados = new PriorityQueue<Rainhas>();
@@ -62,6 +67,7 @@ public class Rainhas implements Comparable<Rainhas>{
 
 	public void calculaNumColisao() {
 		int cont=0;
+		this.numColisao=0;
 		for(int i=0;i<this.tamTabuleiro;i++) {
 			for(int j=i+1;j<this.tamTabuleiro;j++){
 				if(tabuleiro[i]==tabuleiro[j] || diagonal[i]==diagonal[j] || diagonalSegun[i]==diagonalSegun[j]) {
@@ -78,6 +84,11 @@ public class Rainhas implements Comparable<Rainhas>{
 			diagonalSegun[i]=tabuleiro[i]+i;
 		}
 		
+	}
+	public void imprime() {
+		for(int i=0;i<tamTabuleiro;i++) {
+			System.out.print(" "+tabuleiro[i]);
+		}
 	}
 	public int getTamTabuleiro() {
 		return tamTabuleiro;
