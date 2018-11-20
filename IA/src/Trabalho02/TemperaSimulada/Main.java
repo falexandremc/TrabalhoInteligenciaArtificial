@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Problema problema = new Problema(8);
+        ProblemaDasNrainhas problema = new ProblemaDasNrainhas(8);
         Busca busca = new Busca(problema);
 
         System.out.println("\n === Estado Inicial === \n");

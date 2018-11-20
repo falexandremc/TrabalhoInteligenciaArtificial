@@ -3,11 +3,11 @@ package Trabalho02.TemperaSimulada;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Problema {
+public class ProblemaDasNrainhas {
 
     private Estado estadoInicial;
 
-    public Problema(int n) {
+    public ProblemaDasNrainhas(int n) {
         int[][] TabuleiroInicial = criaTabuleiroAleatorio(n);
         estadoInicial = new Estado(TabuleiroInicial, calculaValor(TabuleiroInicial));
     }

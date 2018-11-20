@@ -2,9 +2,9 @@ package Trabalho02.TemperaSimulada;
 
 public class Busca {
 
-    private final Problema problema;
+    private final ProblemaDasNrainhas problema;
 
-    public Busca(Problema problema) {
+    public Busca(ProblemaDasNrainhas problema) {
         this.problema = problema;
     }
     /**
